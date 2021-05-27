@@ -69,7 +69,6 @@ class ProfilesController extends Controller
     }
     public function showProfile(User $user)
     {
-        $this->authorize('update', $user->profile);
-        return view('profiles/showProfile', compact('user'));
+        return view('profiles/{{$user->id}}/showProfile', compact('user'));
     }
 }

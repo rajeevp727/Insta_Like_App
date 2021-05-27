@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand d-flex" href="{{ url('/') }}">
+                <a class="navbar-brand d-flex" href="{{ url('/home') }}">
                     <div><img src="/SVG/insta.svg" style="height: 20px; border-right: 1px solid black;" class="pr-3"></div>
                     <div class="pl-3 pt-1">Insta_Like_App</div>
                 </a>
@@ -59,7 +59,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href=""
+                                    <a class="dropdown-item" href="/home"
                                        onclick="event.preventDefault();
                                                      document.getElementById('home-form').submit();">
                                         {{ __('Home') }}
@@ -68,12 +68,10 @@
                                         @csrf
                                     </form>
 
-                                    <a class="dropdown-item" href=""
+                                    <a class="dropdown-item" href="/profile/{{$user->id}}/showProfile"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('profile-form').submit();">
-                                        {{ __('Profile') }}
-                                    </a>
-                                    <form id="profile-form" action="/" class="d-none">
+                                                     document.getElementById('profile-form').submit();">Profile</a>
+                                    <form id="profile-form" action="/profile" class="d-none">
                                         @csrf
                                     </form>
 
@@ -87,6 +85,7 @@
                                     </form>
 
                                 </div>
+                                
                             </li>
                             
                         @endguest
