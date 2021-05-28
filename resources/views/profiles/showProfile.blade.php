@@ -3,14 +3,13 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <img src="{{ $user->profile->profileImage() }}" alt="" class="rounded-circle w-100">
         <div class="col-3 p-5">
-            <img src="{{ $user->profile->profileImage() }}" alt="" class="rounded-circle w-100">
         </div>
         <div class="col-9 pt-5">
             <div class="d-flex justify-content-between align-items-baseline">
                 <div class="d-flex pb-3">
                     <div class="h3">{{ $user->username }}</div>
-                    
                     <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
                 </div>
                 @can('update', $user->profile)

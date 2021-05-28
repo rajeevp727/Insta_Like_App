@@ -69,6 +69,6 @@ class ProfilesController extends Controller
     }
     public function showProfile(User $user)
     {
-        return view('profiles/{{$user->id}}/showProfile', compact('user'));
+        return view('profiles/showProfile', compact('user'));
     }
 }

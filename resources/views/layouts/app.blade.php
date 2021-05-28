@@ -21,15 +21,19 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm col-lg-12">
+            <div class="container d-flex">
+                {{-- INSTA LOGO --}}
                 <a class="navbar-brand d-flex" href="{{ url('/home') }}">
                     <div><img src="/SVG/insta.svg" style="height: 20px; border-right: 1px solid black;" class="pr-3"></div>
                     <div class="pl-3 pt-1">Insta_Like_App</div>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+
+                <div class="search" style="margin-left:25%;">
+                    <div style="border: 1px solid black; width: 170px; height:30px;">
+                        <input type="input" class=" text-center" placeholder="Search">
+                    </div>
+                </div>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -39,6 +43,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+        
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -46,47 +51,43 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-
+ 
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
-                            <ol class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->username }}
+
+                        {{-- HOME Img --}}
+                        <a class="navbar-brand d-flex" href="{{ url('/home') }}">
+                            <div><img src="/SVG/home.png" style="height: 30px;"></div>
+                        </a>
+
+                        {{-- Chat Img --}}
+                        <a class="navbar-brand d-flex" href="{{ url('/chat') }}">
+                            <div><img src="/SVG/chat.png" style="height: 30px;"></div>
+                        </a>
+                        
+                        {{-- Notifications Img --}}
+                        <a class="navbar-brand d-flex" href="{{ url('/notifications') }}">
+                            <div><img src="/SVG/notifications.png" style="height: 30px;"></div>
+                        </a>
+                            <div style="float: right;">
+                                {{-- User Profile Img --}}  
+                                <a id="navbarDropdown" class="nav-item dropdown nav-link navbar-brand d-flex" role="button" data-toggle="dropdown" aria-haspopup="true" href="{{ url('/home') }}" aria-expanded="false" v-pre>
+                                    <div><img src="/SVG/userProfile.png" style="height: 30px;"></div>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/home"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('home-form').submit();">
-                                        {{ __('Home') }}
-                                    </a>
-                                    <form id="home-form" action="/home" class="d-none">
-                                        @csrf
-                                    </form>
+                                <div class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdown" style="margin-left:80%;">
+                                    <a class="dropdown-item" href="/profile/" onclick="document.getElementById('profile-form').submit();">Profile</a>
+                                    <form id="profile-form" action="/profile/" class="d-none"> @csrf </form>
 
-                                    <a class="dropdown-item" href="/profile/{{$user->id}}/showProfile"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('profile-form').submit();">Profile</a>
-                                    <form id="profile-form" action="/profile" class="d-none">
-                                        @csrf
-                                    </form>
-
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="document.getElementById('logout-form').submit();">Logout</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none"> @csrf </form>
                                 </div>
                                 
-                            </li>
+                            </div>
                             
                         @endguest
                     </ul>

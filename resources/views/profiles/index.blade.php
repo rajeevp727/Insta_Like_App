@@ -9,8 +9,7 @@
         <div class="col-9 pt-5">
             <div class="d-flex justify-content-between align-items-baseline">
                 <div class="d-flex pb-3">
-                    <div class="h3">{{ $user->username }}</div>
-                    
+                    <div class="h3">{{ $user->username }}</div>                    
                     <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
                 </div>
                 @can('update', $user->profile)
@@ -33,6 +32,7 @@
         </div>
     </div>
     <div class="row pt-5">
+    @if ($user->posts != 0)        
         @foreach($user->posts as $posts )
             <div class="col-4 pb-4">
             <a href="/p/{{ $posts->id }}">
@@ -40,6 +40,13 @@
             </a>
             </div>
         @endforeach
+        @else
+        <div class="col-4 pb-4">
+            <a href="/p/{{$posts->id}}">
+               <img src="C:\Users\Rajeev\Desktop\Insta Welocme post.png" class="w-100">
+            </a>
+        </div>
+    @endif
     </div>
 </div>
 
