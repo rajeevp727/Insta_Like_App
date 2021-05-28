@@ -30,4 +30,5 @@ Route::post('/p', [App\Http\Controllers\PostsController::class, 'store']);
 Route::get('/profile/{user}', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile.show');
 Route::get('/profile/{user}/edit', [App\Http\Controllers\ProfilesController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile/{user}', [App\Http\Controllers\ProfilesController::class, 'update'])->name('profile.update');
-Route::get('/profile', [App\Http\Controllers\ProfilesController::class, 'showProfile']);
+
+Route::get('/chat', [App\Http\Controllers\HomeController::class, 'chat']);

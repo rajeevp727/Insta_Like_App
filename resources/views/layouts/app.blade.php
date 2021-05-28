@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Insta_Like_App</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -26,13 +26,11 @@
                 {{-- INSTA LOGO --}}
                 <a class="navbar-brand d-flex" href="{{ url('/home') }}">
                     <div><img src="/SVG/insta.svg" style="height: 20px; border-right: 1px solid black;" class="pr-3"></div>
-                    <div class="pl-3 pt-1">Insta_Like_App</div>
+                    <div class="pl-3">Insta_Like_App</div>
                 </a>
 
-                <div class="search" style="margin-left:25%;">
-                    <div style="border: 1px solid black; width: 170px; height:30px;">
-                        <input type="input" class=" text-center" placeholder="Search">
-                    </div>
+                <div style="margin-left:22%;">
+                        <input type="input" class=" text-center" placeholder="Search" style="border-radius: 7px; width: 250px;">
                 </div>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -70,7 +68,7 @@
                         </a>
                         
                         {{-- Notifications Img --}}
-                        <a class="navbar-brand d-flex" href="{{ url('/notifications') }}">
+                        <a class="navbar-brand d-flex">
                             <div><img src="/SVG/notifications.png" style="height: 30px;"></div>
                         </a>
                             <div style="float: right;">
@@ -80,11 +78,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdown" style="margin-left:80%;">
-                                    <a class="dropdown-item" href="/profile/" onclick="document.getElementById('profile-form').submit();">Profile</a>
-                                    <form id="profile-form" action="/profile/" class="d-none"> @csrf </form>
+                                    <a class="dropdown-item" href="/profile/{{{Auth::user()->id}}}" onclick="document.getElementById('profile-form').submit();">{{ Auth::user()->username }} <span class="caret"></span></a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="document.getElementById('logout-form').submit();">Logout</a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none"> @csrf </form>
                                 </div>
                                 
                             </div>

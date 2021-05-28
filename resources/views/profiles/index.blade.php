@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<title>{{$user->username}}</title>
 @section('content')
 <div class="container">
     <div class="row">
@@ -12,7 +12,7 @@
                     <div class="h3">{{ $user->username }}</div>                    
                     <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
                 </div>
-                @can('update', $user->profile)
+                @can(' ', $user->profile)
                     <a href="/p/create">Add New Post</a>
                 @endcan
             </div>
@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="row pt-5">
-    @if ($user->posts != 0)        
+    {{-- @if ($user->posts != 0)         --}}
         @foreach($user->posts as $posts )
             <div class="col-4 pb-4">
             <a href="/p/{{ $posts->id }}">
@@ -40,13 +40,13 @@
             </a>
             </div>
         @endforeach
-        @else
+        {{-- @else --}}
         <div class="col-4 pb-4">
             <a href="/p/{{$posts->id}}">
                <img src="C:\Users\Rajeev\Desktop\Insta Welocme post.png" class="w-100">
             </a>
         </div>
-    @endif
+    {{-- @endif --}}
     </div>
 </div>
 
