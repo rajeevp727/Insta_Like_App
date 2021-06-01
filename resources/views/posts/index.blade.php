@@ -23,6 +23,7 @@
     </div>
 @endforeach
 
+{{-- Pagination numbers --}}
     <div class="row col-6">
         <div class="d-flex justify-center">
             {{ $posts->links() }}

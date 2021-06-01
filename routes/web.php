@@ -19,6 +19,10 @@ Route::get('email', function () {
 return new \App\Mail\NewUserEmail();
 });
 
+Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout', function () {
+    return abort(404);
+});
+
 Route::post('follow/{user}',  [App\Http\Controllers\FollowsController::class, 'store']);
 
 Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'show']);
@@ -31,4 +35,4 @@ Route::get('/profile/{user}', [App\Http\Controllers\ProfilesController::class, '
 Route::get('/profile/{user}/edit', [App\Http\Controllers\ProfilesController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile/{user}', [App\Http\Controllers\ProfilesController::class, 'update'])->name('profile.update');
 
-Route::get('/chat', [App\Http\Controllers\HomeController::class, 'chat']);
+//<------ Rout for chat is given in chatify.php in the routes section ------>//

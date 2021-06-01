@@ -42,8 +42,8 @@
         @endforeach
         {{-- @else --}}
         <div class="col-4 pb-4">
-            <a href="/p/{{$posts->id}}">
-               <img src="C:\Users\Rajeev\Desktop\Insta Welocme post.png" class="w-100">
+            <a href="/p/{{$user->posts}}">
+               {{-- <img src="C:\Users\Rajeev\Desktop\Insta Welocme post.png" alt="Welcome Image" class="w-100"> --}}
             </a>
         </div>
     {{-- @endif --}}
