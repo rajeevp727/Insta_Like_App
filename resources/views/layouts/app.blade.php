@@ -78,7 +78,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdown" style="margin-left:80%;">
-                                    <a class="dropdown-item" href="/profile/{{{Auth::user()->id}}}" onclick="document.getElementById('profile-form').submit();">{{ Auth::user()->username }} <span class="caret"></span></a>
+                                    <a class="dropdown-item" href="/profile/{{Auth::user()->id}}" onclick="document.getElementById('profile-form').submit();">{{ Auth::user()->username }} <span class="caret"></span></a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="document.getElementById('logout-form').submit();">Logout</a>
                                 </div>

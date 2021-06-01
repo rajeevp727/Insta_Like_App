@@ -67,8 +67,4 @@ class ProfilesController extends Controller
         
         return redirect("/profile/{$user->id}");
     }
-    public function show(User $user)
-    {
-        return view('profiles/{$user->id}/viewProfile', compact('user'));
-    }
 }

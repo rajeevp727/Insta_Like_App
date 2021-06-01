@@ -35,4 +35,4 @@ Route::get('/profile/{user}', [App\Http\Controllers\ProfilesController::class, '
 Route::get('/profile/{user}/edit', [App\Http\Controllers\ProfilesController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile/{user}', [App\Http\Controllers\ProfilesController::class, 'update'])->name('profile.update');
 
-//<------ Rout for chat is given in chatify.php in the routes section ------>//
+//<------ Route for chat is given in chatify.php in the routes section ------>//
