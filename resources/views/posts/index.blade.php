@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
 @if(count($posts)>0)
-<div>
-    <div class="col-4 offset-9" style="border: 1px solid red;">
+<div style="margin-right: 5%;">
+    <div class="col-4 offset-6" style="position: fixed;">
         <div class="d-flex pt-2">
             <a href="/profile/{{ Auth::user()->id }}">
                 <img src="{{ Auth::user()->profile->profileImage() }}" class="rounded-circle" alt="" style="width: 50px; height: 50px;">
@@ -22,15 +22,15 @@
     </div>    
 </div>
 @foreach ($posts as $post)
-<div class="row" style="margin-top: -110px; margin-bottom: 150px;">
-        <div class="col-6 offset-2" style="border: 1px solid #D3D3D3;">
+<div class="row">
+        <div class="col-7 offset-1" style="border: 1px solid #D3D3D3;">
             <div class="d-flex pt-2">
                 <a href="/profile/{{ $post->user->id }}">
                     <img src="{{$post->user->profile->profileImage()}}" class="rounded-circle" alt="" style="width: 50px; height: 50px;">
                 </a>
                 &nbsp; &nbsp; &nbsp;
                 <a href="/profile/{{ $post->user->id }}">
-                    <h5 class="pt-3">{{$post->user->username}}</h5>
+                    <h5 class="pt-3 pl-0">{{$post->user->username}}</h5>
                 </a>
             </div>
             <hr>
@@ -39,16 +39,16 @@
              </a>
         </div>
         {{-- <div class="row pt-2 pb-4"> --}}
-            <div class="col-6 offset-2">
+            <div class="col-7 offset-2">
                 <p><span class="font-weight-bold">
                     <a href="/profile/{{ $post->user->id }}">
                         {{-- <img src="{{$post->user->profile->profileImage()}}" class="rounded-circle" alt="" style="width: 30px; height: 30px;"> --}}
                         <span class="text-dark">{{ $post->user->username }}
                         </span>
-                        
                     </a>
-                </span> {{ $post->caption }}
+                    </span> {{ $post->caption }}
                 </p>
+                
             </div>
         {{-- </div> --}}
 </div>
@@ -59,11 +59,17 @@
 </div>
 @endif
 {{-- Pagination numbers --}}
-    <div class="row col-6">
-        <div class="d-flex justify-center">
+    <div class="row">
+        <div class="col-12 text-center">
             {{ $posts->links() }}
         </div>
     </div>
 </div>
 </div>
+<style>
+    .w-5{
+        display: none;
+    }
+</style>
+
 @endsection
