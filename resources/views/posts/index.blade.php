@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+
+<section class="posts endless-pagination" data-next-page="{{ $posts->nextPageUrl() }}">
+
 <div class="container">
 @if(count($posts)>0)
+{{-- User Code on right side--}}
 <div style="margin-right: 5%;">
     <div class="col-4 offset-6" style="position: fixed;">
         <div class="d-flex pt-2">
@@ -22,6 +26,7 @@
     </div>    
 </div>
 @foreach ($posts as $post)
+{{-- Posts Code --}}
 <div class="row">
         <div class="col-7 offset-1" style="border: 1px solid #D3D3D3;">
             <div class="d-flex pt-2">
@@ -53,23 +58,51 @@
         {{-- </div> --}}
 </div>
 @endforeach
-@else
+@else 
 <div class="col-6 offset-2" style="border: 1px solid #D3D3D3;">
         <img src="/storage/Welcome.png" alt="Welcome to Insta_Like_App" style="width: 50px; height: 50px;">
 </div>
 @endif
-{{-- Pagination numbers --}}
-    <div class="row">
-        <div class="col-12 text-center">
-            {{ $posts->links() }}
-        </div>
-    </div>
-</div>
-</div>
-<style>
-    .w-5{
-        display: none;
-    }
-</style>
 
-@endsection
+{{-- Pagination --}}
+    {{-- <div class="row"> --}}
+        {{-- <div class="col-12 text-center"> --}}
+            {{-- {{ $posts->links() }} --}}
+        {{-- </div> --}}
+    {{-- </div> --}}
+{{-- </div> --}}
+{{-- <style> --}}
+     {{-- .w-5{ --}}
+         {{-- display: none; --}}
+         {{-- } --}}
+        {{-- </style> --}}
+        
+</div>
+</section>
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>
+    $(document).ready(function() { 
+        window.scroll(fetchPosts);
+
+        function fetchPosts() {
+            var page = $('.endless-pagination').data('next-page');
+
+            if(page !== null){
+
+                clearTimeout($.data(this, "scrollCheck"));
+
+                $.data(this, "scrollCheck", setTimeout(function() {
+                    var scroll_position_for_posts_load = $(window).height() + $(window).scrollTop() + 100;
+
+                    if(scroll_position_for_posts_load >= $(document).height()) {
+                        $.get(page, function(data){
+                            $('.posts').append(data.posts);
+                            $('.endless-pagination').data('next-page', data.next_page);
+                        });
+                    }
+                }, 100))
+            }
+        }
+    })
+</script>
+@endsection 

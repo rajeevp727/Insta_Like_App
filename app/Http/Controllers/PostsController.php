@@ -9,15 +9,31 @@ use App\Models\Post;
 class PostsController extends Controller
 {
 
+    protected $posts_per_page = 3;
+
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+
         $users = auth()->user()->following()-> pluck('profiles.user_id');
-        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(3);
+        // $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(3); //For Laravel pagination
+        
+        // $posts = Post::whereIn('user_id', $users)->with('user')->get();
+        $posts = Post::paginate($this->posts_per_page);
+
+
+// Using AJAX to automatically load data
+        if($request->ajax())  {
+            return [
+                'posts'=> view('posts.ajax.index', compact('posts'))->render(),
+                'next_page'=> $posts->nextPageUrl()
+            ];
+        }
+
         return view('posts.index', compact('posts'));
     }   
     
