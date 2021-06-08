@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
+Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'show']);
 
 Route::get('email', function () {
 return new \App\Mail\NewUserEmail();
@@ -25,7 +26,6 @@ Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout', functi
 
 Route::post('follow/{user}',  [App\Http\Controllers\FollowsController::class, 'store']);
 
-Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'show']);
 Route::get('/home', [App\Http\Controllers\PostsController::class, 'index']);
 Route::get('/p/create', [App\Http\Controllers\PostsController::class, 'create']);
 Route::get('/p/{posts}', [App\Http\Controllers\PostsController::class, 'show']);
@@ -36,3 +36,5 @@ Route::get('/profile/{user}/edit', [App\Http\Controllers\ProfilesController::cla
 Route::patch('/profile/{user}', [App\Http\Controllers\ProfilesController::class, 'update'])->name('profile.update');
 
 //<------ Route for chat is given in chatify.php in the routes section ------>//
+
+Route::get('/', );

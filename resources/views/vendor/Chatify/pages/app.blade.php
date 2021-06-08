@@ -1,3 +1,5 @@
+<br><br>
+@extends('layouts.app')
 @include('Chatify::layouts.headLinks')
 <div class="messenger">
     {{-- ----------------------Users/Groups lists side---------------------- --}}
@@ -67,13 +69,14 @@
                     <a href="#" class="show-listView"><i class="fas fa-arrow-left"></i></a>
                     <div class="avatar av-s header-avatar" style="margin: 0px 10px; margin-top: -5px; margin-bottom: -5px;">
                     </div>
-                    <a href="/profile/{{Auth::user()->id}}" class="user-name">{{ Auth::user()->username }}</a>
+                    {{-- <a href="/profile/{{Auth::user()->id}}" class="user-name">{{ Auth::user()->username }}(You)</a> --}}
+                    <a href="/profile/{{Auth::user()->id}}" class="user-name"></a> <!-- displays username-->
                 </div>
                 {{-- header buttons --}}
                 <nav class="m-header-right">
                     <a href="#" class="add-to-favorite"><i class="fas fa-star"></i></a>
-                    <a href="/"><i class="fas fa-home"></i></a>
-                    <a href="#" class="show-infoSide"><i class="fas fa-info-circle"></i></a>
+                    {{-- <a href="/"><i class="fas fa-home"></i></a> --}}
+                    {{-- <a href="#" class="show-infoSide"><i class="fas fa-info-circle"></i></a> --}}
                 </nav>
             </nav>
         </div>

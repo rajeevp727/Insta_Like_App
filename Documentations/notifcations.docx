@@ -1,0 +1,5 @@
+Go to terminal and execute the command, **php artisan notifications:table**, then migrate the table to DB using the
+**php artisan migrate** command
+Then craate a class for notificationsusing **php artisna make:notification RepliedTo**
+In the repliedTo class, change the via method from mail to database and delete the toMail().
+Create a method toDatabase() 

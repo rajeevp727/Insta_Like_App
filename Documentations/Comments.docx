@@ -1,0 +1,1 @@
+To make a commenting system, lets first create a model for comments using **php artisan make:model Like -m -c** (Here m→migrate, c→controller). 

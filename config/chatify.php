@@ -7,7 +7,7 @@ return [
     | Messenger display name
     |-------------------------------------
     */
-    'name' => env('CHATIFY_NAME', 'Ista_Like_App | Chat'),
+    'name' => env('CHATIFY_NAME', 'Insta_Like_App | Chat'),
 
     /*
     |-------------------------------------
@@ -54,6 +54,6 @@ return [
         'folder' => 'attachments',
         'download_route_name' => 'attachments.download',
         'allowed_images' => (array) ['png','jpg','jpeg','gif'],
-        'allowed_files' => (array) ['zip','rar','txt'],
+        'allowed_files' => (array) ['zip','rar','txt']
     ],
 ];
