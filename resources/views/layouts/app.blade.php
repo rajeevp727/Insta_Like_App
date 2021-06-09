@@ -83,22 +83,23 @@
                                 <div><img src="/SVG/notifications.png" style="height: 30px;"></div>
                             </a>
                             <div style="float: right;">
-                                {{-- User Profile Img --}}
-                                <a id="navbarDropdown" class="nav-item dropdown nav-link navbar-brand d-flex" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" href="{{ url('/home') }}"
-                                    aria-expanded="false" v-pre>
-                                    <div><img src="/SVG/userProfile.png" style="height: 30px;"></div>
-                                </a>
+                            
+                            {{-- User Profile Img --}}
+                            <a id="navbarDropdown" class="nav-item dropdown nav-link navbar-brand d-flex" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <div><img src="/SVG/userProfile.png" style="height: 30px;"></div>
+                            </a>
 
-                                <div class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdown"
-                                    style="margin-left:80%;">
-                                    <a class="dropdown-item" href="/profile/{{ Auth::user()->id }}"
-                                        onclick="document.getElementById('profile-form').submit();">{{ Auth::user()->username }}
-                                        <span class="caret"></span></a>
+                            {{-- DropDown options viz. Profile, Logout --}}
+                            <div class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdown"
+                                style="margin-left:80%;">
+                                <a class="dropdown-item" href="/profile/{{ Auth::user()->id }}"
+                                    onclick="document.getElementById('profile-form').submit();">{{ Auth::user()->username }}
+                                    <span class="caret"></span></a>
 
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="document.getElementById('logout-form').submit();">Logout</a>
-                                </div>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="document.getElementById('logout-form').submit();">Logout</a>
+                            </div>
 
                             </div>
 

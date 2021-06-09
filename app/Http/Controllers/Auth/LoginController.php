@@ -30,7 +30,13 @@ class LoginController extends Controller
 
     public function show()
     {
-        return view('auth.login');
+        if(!exists(Auth::user()->id))
+        {
+            return view('auth.login');
+        }
+        else{
+            return view('posts.index');
+        }
     }
 
     /**

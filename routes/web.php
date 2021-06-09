@@ -26,7 +26,8 @@ Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout', functi
 
 Route::post('follow/{user}',  [App\Http\Controllers\FollowsController::class, 'store']);
 
-Route::get('/home', [App\Http\Controllers\PostsController::class, 'index']);
+// Route::get('/home', [App\Http\Controllers\PostsController::class, 'index']);
+Route::get('/home', [App\Http\Controllers\PostsController::class, 'index'])->middleware('auth');
 Route::get('/p/create', [App\Http\Controllers\PostsController::class, 'create']);
 Route::get('/p/{posts}', [App\Http\Controllers\PostsController::class, 'show']);
 Route::post('/p', [App\Http\Controllers\PostsController::class, 'store']);
@@ -36,5 +37,3 @@ Route::get('/profile/{user}/edit', [App\Http\Controllers\ProfilesController::cla
 Route::patch('/profile/{user}', [App\Http\Controllers\ProfilesController::class, 'update'])->name('profile.update');
 
 //<------ Route for chat is given in chatify.php in the routes section ------>//
-
-Route::get('/', );

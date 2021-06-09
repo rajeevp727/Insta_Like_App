@@ -40,17 +40,17 @@ class PostsController extends Controller
                                     '</a>'.
                                 '</div>'.
                                 '<div class="row pt-2 pb-2">'.
-                                '<div style="padding-left: 10%;">'.
-                                '<p><span class="font-weight-bold">'.
-                                '<a href="/profile/'.$p->user->id.'">'.
-                                // '<img src="'.$p->user->profile->profileImage().'" class="rounded-circle" alt="" style="width: 30px; height: 30px;">'.
-                                '<span class="text-dark">'.$p->user->username.'</span>'.
-                                '</a>'.
-                                '</span><span class="pl-2">'.$p->caption.'</span>'.
-                                '</p>'.
-                                '<i class="fa fa-home fa-2x" aria-hidden="true"></i>'.
-                                '<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"> Like </i>'.
-                                '</div>'.
+                                    '<div style="padding-left: 10%;">'.
+                                        '<p><span class="font-weight-bold">'.
+                                        '<a href="/profile/'.$p->user->id.'">'.
+                                            // '<img src="'.$p->user->profile->profileImage().'" class="rounded-circle" alt="" style="width: 30px; height: 30px;">'.
+                                            '<span class="text-dark">'.$p->user->username.'</span>'.
+                                        '</a>'.
+                                        '</span><span class="pl-2">'.$p->caption.'</span>'.
+                                        '</p>'.
+                                        '<i class="fa fa-home fa-2x" aria-hidden="true"></i>'.
+                                        '<i class="fa fa-thumbs-up fa-2x" aria-hidden="true"> Like </i>'.
+                                    '</div>'.
                                 '</div>'.
                             '</div>';
             }
