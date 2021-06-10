@@ -17,7 +17,6 @@
         * {
             margin: 0px;
         }
-
     </style>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -33,7 +32,7 @@
             style="position: fixed; top:0px; overflow: hidden; width: 100%; height: 45px;">
             <div class="container d-flex">
                 {{-- INSTA LOGO --}}
-                <a class="navbar-brand d-flex" href="{{ url('/home') }}">
+                <a class="navbar-brand d-flex" href="{{ url('/') }}">
                     <div><img src="/SVG/insta.svg" style="height: 20px; border-right: 1px solid black;" class="pr-3">
                     </div>
                     <div class="pl-3">Insta_Like_App</div>
@@ -55,63 +54,62 @@
 
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+                        @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                        @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                        @endif
                         @else
 
-                            {{-- HOME Img --}}
-                            <a class="navbar-brand d-flex" href="{{ url('/home') }}">
-                                <div><img src="/SVG/home.png" style="height: 30px;"></div>
-                            </a>
+                        {{-- HOME Img --}}
+                        <a class="navbar-brand d-flex" href="{{ url('/') }}">
+                            <div><img src="/SVG/home.png" style="height: 30px;"></div>
+                        </a>
 
-                            {{-- Chat Img --}}
-                            <a class="navbar-brand d-flex" href="{{ url('/chat') }}">
-                                <div><img src="/SVG/chat.png" style="height: 30px;"></div>
-                            </a>
+                        {{-- Chat Img --}}
+                        <a class="navbar-brand d-flex" href="{{ url('/chat') }}">
+                            <div><img src="/SVG/chat.png" style="height: 30px;"></div>
+                        </a>
 
-                            {{-- Notifications Img --}}
-                            <a class="navbar-brand d-flex">
-                                <div><img src="/SVG/notifications.png" style="height: 30px;"></div>
-                            </a>
-                            <div style="float: right;">
-                            
+                        {{-- Notifications Img --}}
+                        <a class="navbar-brand d-flex">
+                            <div><img src="/SVG/notifications.png" style="height: 30px;"></div>
+                        </a>
+                        <div style="float: right;">
+
                             {{-- User Profile Img --}}
-                            <a id="navbarDropdown" class="nav-item dropdown nav-link navbar-brand d-flex" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-item dropdown nav-link navbar-brand d-flex pl-0"
+                                role="button" data-toggle="dropdown" aria-expanded="false" v-pre>
                                 <div><img src="/SVG/userProfile.png" style="height: 30px;"></div>
                             </a>
 
                             {{-- DropDown options viz. Profile, Logout --}}
-                            <div class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdown"
-                                style="margin-left:80%;">
-                                <a class="dropdown-item" href="/profile/{{ Auth::user()->id }}"
-                                    onclick="document.getElementById('profile-form').submit();">{{ Auth::user()->username }}
-                                    <span class="caret"></span></a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/profile/{{Auth::user()->profile->id}}">Profile</a>
+                                <a class="dropdown-item" href="/p/favorites">Favorites</a>
+                                <a class="dropdown-item" href="/comments">Comments</a>
 
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="document.getElementById('logout-form').submit();">Logout</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
                             </div>
-
-                            </div>
-
+                        </div>
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
     </div>
 </body>
 

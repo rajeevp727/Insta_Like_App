@@ -26,15 +26,13 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     public function show()
     {
-        if(!exists(Auth::user()->id))
-        {
+        if (!exists(Auth::user()->id)) {
             return view('auth.login');
-        }
-        else{
+        } else {
             return view('posts.index');
         }
     }

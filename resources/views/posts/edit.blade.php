@@ -2,9 +2,10 @@
 
 @section('content')
 <div class="container">
-  <form action="/p" enctype="multipart/form-data" method="post">
+  <form action="/p/{{ $post->id }}" enctype="multipart/form-data" method="post">
     <div class="col-8 offset-2">
       @csrf
+      @method('PATCH')
       <div class="row">
         <h1>Add New Post</h1>
       </div>
@@ -13,7 +14,7 @@
           <label for="caption" class="col-md-4 col-form-label">Post Caption</label>
 
           <input id="caption" type="text" class="form-control @error('caption') is-invalid @enderror"
-          name="caption" value="{{ old('caption') }}" required autocomplete="caption" autofocus>
+          name="caption" value="{{ old('title') ?? $post->caption }}" required autocomplete="caption" autofocus>
 
           @error('caption')
                 <span class="invalid-feedback" role="alert">
@@ -31,7 +32,7 @@
       </div>
 
       <div class="row pt-4">
-        <button class="btn btn-primary">Add New Post</button>
+        <button class="btn btn-primary">Save Post</button>
       </div>
     </div>
   </form>

@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+// use Laravelista\Comments\Commenter;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Mail;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -62,6 +63,11 @@ class User extends Authenticatable
     public function following()
     {
         return $this->belongsToMany(Profile::class);
+    }
+
+    public function favorites()
+    {
+      return $this->belongsToMany(Post::class, 'favorites', 'user_id', 'post_id')->withTimeStamps();
     }
 
     public function profile(){

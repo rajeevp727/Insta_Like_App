@@ -73,7 +73,7 @@
             </div>
           </div>
         </div>
-        
+
         {{-- Password --}}
         <div class="input-group mb-3">
             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete= "new-password" placeholder="Password">
@@ -91,12 +91,12 @@
               </div>
             </div>
           </div>
-          
+
 
         {{-- Confirm Password --}}
         <div class="input-group mb-3">
               <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm password">
-          
+
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

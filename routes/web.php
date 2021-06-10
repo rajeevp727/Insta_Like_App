@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,27 +11,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Mail\NewUserWelcomeMail;
+
+
+Route::get('/', [App\Http\Controllers\PostsController::class, 'index'])->middleware('auth');
+
 Auth::routes();
-Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'show']);
 
-Route::get('email', function () {
-return new \App\Mail\NewUserEmail();
+Route::get('/email', function () {
+    return new NewUserWelcomeMail();
 });
 
-Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout', function () {
-    return abort(404);
-});
 
-Route::post('follow/{user}',  [App\Http\Controllers\FollowsController::class, 'store']);
+Route::post('follow/{user}', [App\Http\Controllers\FollowsController::class, 'store']);
 
-// Route::get('/home', [App\Http\Controllers\PostsController::class, 'index']);
-Route::get('/home', [App\Http\Controllers\PostsController::class, 'index'])->middleware('auth');
-Route::get('/p/create', [App\Http\Controllers\PostsController::class, 'create']);
-Route::get('/p/{posts}', [App\Http\Controllers\PostsController::class, 'show']);
-Route::post('/p', [App\Http\Controllers\PostsController::class, 'store']);
+Route::post('favorite/{post}', [App\Http\Controllers\PostsController::class, 'favoritePost'])->middleware('auth');
+
+Route::get('p/favorites', [App\Http\Controllers\PostsController::class, 'myFavorites'])->middleware('auth');
+Route::get('/comments', [App\Http\Controllers\PostsController::class, 'comments'])->middleware('auth');
+
+Route::get('/p/create', [App\Http\Controllers\PostsController::class, 'create'])->middleware('auth');
+Route::post('/p', [App\Http\Controllers\PostsController::class, 'store'])->middleware('auth');
+Route::get('/p/{post}/edit', [App\Http\Controllers\PostsController::class, 'edit'])->middleware('auth');
+Route::patch('/p/{post}', [App\Http\Controllers\PostsController::class, 'update'])->middleware('auth');
+Route::get('/p/{post}', [App\Http\Controllers\PostsController::class, 'show']);
+Route::delete('/p/{post}', [App\Http\Controllers\PostsController::class, 'delete']);
+
 
 Route::get('/profile/{user}', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile.show');
 Route::get('/profile/{user}/edit', [App\Http\Controllers\ProfilesController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile/{user}', [App\Http\Controllers\ProfilesController::class, 'update'])->name('profile.update');
-
-//<------ Route for chat is given in chatify.php in the routes section ------>//

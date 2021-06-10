@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<title>{{$user->username}}</title>
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -9,20 +9,20 @@
         <div class="col-9 pt-5">
             <div class="d-flex justify-content-between align-items-baseline">
                 <div class="d-flex pb-3">
-                    <div class="h3">{{ $user->username }}</div>                    
+                    <div class="h3">{{ $user->username }}</div>
                     <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
                 </div>
                 @can(' ', $user->profile)
-                    <a href="/p/create">Add New Post</a>
+                <a href="/p/create">Add New Post</a>
                 @endcan
             </div>
             @can('update', $user->profile)
-                <a href="/profile/{{$user->id}}/edit">Edit Profile</a>
+            <a href="/profile/{{$user->id}}/edit">Edit Profile</a>
             @endcan
             <div class="d-flex">
-            <div class="pr-5"><strong>{{ $postsCount }}</strong> posts</div>
-            <div class="pr-5"><strong>{{ $followersCount }}</strong> followers</div>
-            <div class="pr-5"><strong>{{ $followingCount }}</strong> following</div>
+                <div class="pr-5"><strong>{{ $postsCount }}</strong> posts</div>
+                <div class="pr-5"><strong>{{ $followersCount }}</strong> followers</div>
+                <div class="pr-5"><strong>{{ $followingCount }}</strong> following</div>
             </div>
             <div class="pt-4 font-weight-bold">{{$user->profile->title}}</div>
             <div>{{$user->profile->description }}</div>
@@ -32,21 +32,13 @@
         </div>
     </div>
     <div class="row pt-5">
-    {{-- @if ($user->posts != 0)         --}}
         @foreach($user->posts as $posts )
-            <div class="col-4 pb-4">
+        <div class="col-4 pb-4">
             <a href="/p/{{ $posts->id }}">
                 <img src="/storage/{{ $posts->image }}" class="w-100">
             </a>
-            </div>
-        @endforeach
-        {{-- @else --}}
-        <div class="col-4 pb-4">
-            <a href="/p/{{$user->posts}}">
-               {{-- <img src="C:\Users\Rajeev\Desktop\Insta Welocme post.png" alt="Welcome Image" class="w-100"> --}}
-            </a>
         </div>
-    {{-- @endif --}}
+        @endforeach
     </div>
 </div>
 
